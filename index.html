@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balai Desa Mayongkidul</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1D6yezbUcdRfF0JUNHB9Hi-p_t2MkTP1H&sz=w64">
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Variables CSS / Pengaturan Default */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-blur: 16px;
+            --font-color-menu: #ffffff;
+            --font-color-quote: #e2e8f0;
+            --highlight-color: #38bdf8;
+            --menu-bg-color: rgba(15, 23, 42, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Utility Class: Liquid Glass Effect */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* HEADER & NAVBAR */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 2%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: var(--menu-bg-color);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: -5px;
+            cursor: pointer;
+        }
+
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* MENU & NAVIGATION */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 6px;
+        }
+
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--font-color-menu);
+            padding: 10px 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .nav-link i {
+            font-size: 0.75rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--highlight-color);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-item:hover .nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* SUBMENU */
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 210px;
+            list-style: none;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 100;
+        }
+
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px) scale(1);
+        }
+
+        .submenu li a {
+            padding: 10px 20px;
+            color: var(--font-color-menu);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
+        .submenu li a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--highlight-color);
+            padding-left: 25px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 80px 5% 40px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .quote-box {
+            padding: 40px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .quote-box i {
+            font-size: 2rem;
+            color: var(--highlight-color);
+            margin-bottom: 15px;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--font-color-quote);
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--highlight-color);
+        }
+
+        /* IFRAME SECTION DENGAN KONTROL TOMBOL PRINT */
+        .iframe-section {
+            display: none;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            height: 85vh;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .iframe-section.active {
+            display: flex;
+        }
+
+        .iframe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .iframe-title-info {
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .iframe-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-print {
+            background: #10b981;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-print:hover {
+            background: #059669;
+        }
+
+        .btn-reload {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 8px 12px;
+        }
+
+        .btn-reload:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-close-iframe {
+            background: #ef4444;
+            color: #fff;
+            padding: 8px 12px;
+        }
+
+        .btn-close-iframe:hover {
+            background: #dc2626;
+        }
+
+        .iframe-wrapper {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #ffffff;
+        }
+
+        /* ADMIN PANEL */
+        .admin-section {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 30px;
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .admin-title {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* MODAL LOGIN */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .login-card h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--highlight-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        /* TAB NAVIGATION */
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--highlight-color);
+            color: #0f172a;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* FORM ELEMENTS */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-control option {
+            background: #0f172a;
+            color: #fff;
+        }
+
+        .form-control:focus {
+            border-color: var(--highlight-color);
+        }
+
+        input[type="color"] {
+            height: 45px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background: var(--highlight-color);
+            color: #0f172a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+        }
+
+        .btn-warning {
+            background: #f59e0b;
+            color: #fff;
+        }
+
+        /* MENU MANAGEMENT TABLE */
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .menu-table th, .menu-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .menu-table th {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR HEADER -->
+    <header>
+        <nav class="glass-panel">
+            <div class="logo-container" onclick="showSection('home')">
+                <img src="https://drive.google.com/thumbnail?id=1D6yezbUcdRfF0JUNHB9Hi-p_t2MkTP1H&sz=w200" alt="Logo Mayongkidul">
+                <div class="logo-text">
+                    <h1>DESA MAYONGKIDUL</h1>
+                    <p>Kabupaten Jepara</p>
+                </div>
+            </div>
+
+            <ul class="nav-menu" id="mainNavMenu">
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showSection('home')">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><span>Surat Keterangan</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu glass-panel">
+                        <li><a onclick="loadIframe('https://example.com/sk-domisili', 'Layanan SK Domisili')">SK Domisili</a></li>
+                        <li><a onclick="loadIframe('https://example.com/sk-usaha', 'Layanan SK Usaha')">SK Usaha</a></li>
+                        <li><a onclick="loadIframe('https://example.com/sktm', 'Layanan SKTM')">SK Tidak Mampu (SKTM)</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><span>Surat Lain-lain</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu glass-panel">
+                        <li><a onclick="loadIframe('https://example.com/pengantar-polisi', 'Surat Pengantar Kepolisian')">Surat Pengantar Kepolisian</a></li>
+                        <li><a onclick="loadIframe('https://example.com/surat-kehilangan', 'Surat Kehilangan')">Surat Kehilangan</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><span>Pertanahan</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu glass-panel">
+                        <li><a onclick="loadIframe('https://example.com/sppt-pbb', 'Cetak SPPT PBB')">Cetak SPPT PBB</a></li>
+                        <li><a onclick="loadIframe('https://example.com/ajb', 'Permohonan AJB')">Permohonan AJB</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><span>Kios</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu glass-panel">
+                        <li><a onclick="loadIframe('https://example.com/sewa-kios', 'Sewa Kios Desa')">Sewa Kios Desa</a></li>
+                        <li><a onclick="loadIframe('https://example.com/lapak-umkm', 'Lapak UMKM')">Informasi Lapak UMKM</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><span>Perkawinan</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu glass-panel">
+                        <li><a onclick="loadIframe('https://example.com/pengantar-nikah', 'Pengantar Nikah')">Surat Pengantar NIKAH (N1-N4)</a></li>
+                        <li><a onclick="loadIframe('https://example.com/persyaratan-kua', 'Persyaratan KUA')">Persyaratan KUA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="handleAdminClick()"><i class="fas fa-user-gear"></i> <span>Admin</span></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN HOME SECTION -->
+    <main id="homeSection">
+        <section class="hero">
+            <h2 style="font-size: 2.2rem; margin-bottom: 10px;">Selamat Datang di Portal Pelayanan Administrasi dan Pencatatan Data</h2>
+            <p style="opacity: 0.9;">Pemerintah Desa Mayongkidul, Kecamatan Mayong, Kabupaten Jepara</p>
+
+            <div class="quote-box glass-panel">
+                <i class="fas fa-quote-left"></i>
+                <div class="quote-text" id="displayQuote">"Memudahkan Perangkat Desa dalam Pelayanan Administrasi kepada Masyarakat Desa sehingga lebih efisien dan proses menjadi lebih cepat "</div>
+                <div class="quote-author" id="displayAuthor">- Admin Desa Mayongkidul</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AREA IFRAME DENGAN TOMBOL PRINT KONTROL -->
+    <section id="iframeSection" class="iframe-section glass-panel">
+        <div class="iframe-header">
+            <div class="iframe-title-info">
+                <i class="fas fa-file-invoice" style="color: var(--highlight-color);"></i>
+                <span id="iframeTitleText">Dokumen / Layanan Generator</span>
+            </div>
+            <div class="iframe-actions">
+                <!-- Tombol Cetak / Print -->
+                <button class="btn btn-print" onclick="printIframe()">
+                    <i class="fas fa-print"></i> Cetak / Print Hasil
+                </button>
+                <!-- Tombol Reload -->
+                <button class="btn btn-reload" onclick="reloadIframe()" title="Muat Ulang Halaman">
+                    <i class="fas fa-rotate-right"></i>
+                </button>
+                <!-- Tombol Tutup -->
+                <button class="btn btn-close-iframe" onclick="showSection('home')" title="Tutup Halaman">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="iframe-wrapper">
+            <iframe id="mainIframe" class="iframe-container" src="" title="Konten Layanan"></iframe>
+        </div>
+    </section>
+
+    <!-- MODAL LOGIN ADMIN -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="login-card glass-panel">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h2><i class="fas fa-lock"></i> Login Admin</h2>
+            <form onsubmit="performLogin(event)">
+                <div class="form-group">
+                    <label>Username:</label>
+                    <input type="text" id="loginUser" class="form-control" placeholder="Masukkan Username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="loginPass" class="form-control" placeholder="Masukkan Password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;"><i class="fas fa-sign-in-alt"></i> Masuk Admin</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL SECTION -->
+    <section id="adminSection" class="admin-section glass-panel">
+        <div class="admin-header">
+            <div class="admin-title">
+                <i class="fas fa-sliders"></i> Panel Pengaturan Admin
+            </div>
+            <button class="btn btn-danger" onclick="logoutAdmin()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+
+        <!-- Tab Buttons -->
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('utamaTab')"><i class="fas fa-palette"></i> Pengaturan Halaman Utama</button>
+            <button class="tab-btn" onclick="switchTab('menuTab')"><i class="fas fa-bars"></i> Pengaturan Menu</button>
+        </div>
+
+        <!-- TAB 1: PENGATURAN HALAMAN UTAMA -->
+        <div id="utamaTab" class="tab-content active">
+            <form id="themeForm">
+                <h3 style="margin-bottom: 15px;"><i class="fas fa-quote-right"></i> Pengaturan Kutipan (Quote)</h3>
+                <div class="form-group">
+                    <label>Teks Quote:</label>
+                    <input type="text" id="inputQuote" class="form-control" value="Melayani Masyarakat Desa Mayongkidul dengan Transparansi, Integritas, dan Sepenuh Hati.">
+                </div>
+
+                <h3 style="margin-top: 25px; margin-bottom: 15px;"><i class="fas fa-paint-brush"></i> Warna & Tema Liquid Glass</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Warna Huruf Menu:</label>
+                        <input type="color" id="colorMenuFont" class="form-control" value="#ffffff">
+                    </div>
+                    <div class="form-group">
+                        <label>Warna Huruf Quote:</label>
+                        <input type="color" id="colorQuoteFont" class="form-control" value="#e2e8f0">
+                    </div>
+                    <div class="form-group">
+                        <label>Warna Sorot (Highlight):</label>
+                        <input type="color" id="colorHighlight" class="form-control" value="#38bdf8">
+                    </div>
+                    <div class="form-group">
+                        <label>Warna Latar Menu Navbar:</label>
+                        <input type="color" id="colorMenuBg" class="form-control" value="#0f172a">
+                    </div>
+                </div>
+
+                <div class="form-grid" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label>Transparansi Liquid Glass (Opacity):</label>
+                        <input type="range" id="glassOpacity" min="0.05" max="0.5" step="0.05" value="0.08" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Efek Blur (px):</label>
+                        <input type="range" id="glassBlur" min="0" max="30" step="1" value="16" class="form-control">
+                    </div>
+                </div>
+
+                <button type="button" class="btn" onclick="applySettings()" style="margin-top: 15px;"><i class="fas fa-save"></i> Simpan Pengaturan Utamanya</button>
+            </form>
+        </div>
+
+        <!-- TAB 2: PENGATURAN MENU -->
+        <div id="menuTab" class="tab-content">
+            <h3><i class="fas fa-plus-circle"></i> Tambah / Edit Menu Baru</h3>
+            <div class="form-grid" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label>Induk Menu:</label>
+                    <select id="parentMenuSelect" class="form-control">
+                        <!-- Populated dynamically by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nama Menu / Submenu Baru:</label>
+                    <input type="text" id="menuTitle" class="form-control" placeholder="Contoh: Form Pengaduan">
+                </div>
+                <div class="form-group">
+                    <label>Link / URL Tautan:</label>
+                    <input type="text" id="menuLink" class="form-control" placeholder="Contoh: https://google.com">
+                </div>
+                <div class="form-group">
+                    <label>Buka Di (Target):</label>
+                    <select id="menuTargetSelect" class="form-control">
+                        <option value="iframe">Iframe Internal (Tetap di Website)</option>
+                        <option value="_blank">Halaman Baru (Tab Baru Browser)</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn" onclick="addOrUpdateMenu()"><i class="fas fa-plus"></i> Tambah ke Struktur Navigasi</button>
+
+            <h3 style="margin-top: 30px;"><i class="fas fa-list"></i> Daftar Struktur Menu Aktif</h3>
+            <table class="menu-table">
+                <thead>
+                    <tr>
+                        <th>Tipe</th>
+                        <th>Nama Menu</th>
+                        <th>Link / URL</th>
+                        <th>Target</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="menuTableBody">
+                    <!-- Dynamic rendering by JS -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Pemerintah Desa Mayongkidul.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let isLoggedIn = false;
+
+        // Function untuk menampilkan Iframe dengan Judul Dinamis
+        function loadIframe(url, title = 'Dokumen / Layanan Generator') {
+            if(!url || url === '#' || url === 'javascript:void(0)') return;
+            
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('adminSection').classList.remove('active');
+            
+            const iframeSection = document.getElementById('iframeSection');
+            const iframe = document.getElementById('mainIframe');
+            const titleText = document.getElementById('iframeTitleText');
+            
+            titleText.textContent = title;
+            iframe.src = url;
+            iframeSection.classList.add('active');
+        }
+
+        // Fungsi Cetak / Print Konten Iframe
+        function printIframe() {
+            const iframe = document.getElementById('mainIframe');
+            try {
+                iframe.contentWindow.focus();
+                iframe.contentWindow.print();
+            } catch (e) {
+                alert("Jika pencetakan tidak berjalan otomatis, silakan gunakan tombol cetak bawaan pada halaman tersebut.");
+                console.error("Print error:", e);
+            }
+        }
+
+        // Fungsi Reload Iframe
+        function reloadIframe() {
+            const iframe = document.getElementById('mainIframe');
+            if (iframe.src) {
+                iframe.contentWindow.location.reload();
+            }
+        }
+
+        // Login Handler
+        function handleAdminClick() {
+            if (isLoggedIn) {
+                showSection('admin');
+            } else {
+                document.getElementById('loginModal').classList.add('active');
+            }
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function performLogin(event) {
+            event.preventDefault();
+            const user = document.getElementById('loginUser').value;
+            const pass = document.getElementById('loginPass').value;
+
+            if (user === 'maykid' && pass === 'Maykid03/01') {
+                isLoggedIn = true;
+                closeLoginModal();
+                showSection('admin');
+                document.getElementById('loginUser').value = '';
+                document.getElementById('loginPass').value = '';
+            } else {
+                alert('Username atau Password salah!');
+            }
+        }
+
+        function logoutAdmin() {
+            isLoggedIn = false;
+            showSection('home');
+            alert('Anda telah keluar dari sesi Admin.');
+        }
+
+        // Switch Section (Home vs Admin vs Iframe)
+        function showSection(section) {
+            document.getElementById('iframeSection').classList.remove('active');
+            document.getElementById('mainIframe').src = '';
+
+            if (section === 'home') {
+                document.getElementById('homeSection').style.display = 'block';
+                document.getElementById('adminSection').classList.remove('active');
+            } else if (section === 'admin') {
+                document.getElementById('homeSection').style.display = 'none';
+                document.getElementById('adminSection').classList.add('active');
+                populateParentSelect();
+                renderMenuTable();
+            }
+        }
+
+        // Switch Admin Tabs
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const btns = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Live Apply Theme & Settings
+        function applySettings() {
+            const quoteText = document.getElementById('inputQuote').value;
+            document.getElementById('displayQuote').innerText = `"${quoteText}"`;
+
+            const fontMenu = document.getElementById('colorMenuFont').value;
+            const fontQuote = document.getElementById('colorQuoteFont').value;
+            const highlight = document.getElementById('colorHighlight').value;
+            const menuBg = document.getElementById('colorMenuBg').value;
+            const opacity = document.getElementById('glassOpacity').value;
+            const blur = document.getElementById('glassBlur').value;
+
+            const r = parseInt(menuBg.substr(1,2), 16);
+            const g = parseInt(menuBg.substr(3,2), 16);
+            const b = parseInt(menuBg.substr(5,2), 16);
+
+            document.documentElement.style.setProperty('--font-color-menu', fontMenu);
+            document.documentElement.style.setProperty('--font-color-quote', fontQuote);
+            document.documentElement.style.setProperty('--highlight-color', highlight);
+            document.documentElement.style.setProperty('--menu-bg-color', `rgba(${r}, ${g}, ${b}, 0.7)`);
+            document.documentElement.style.setProperty('--glass-bg', `rgba(255, 255, 255, ${opacity})`);
+            document.documentElement.style.setProperty('--glass-blur', `${blur}px`);
+
+            alert('Pengaturan tampilan berhasil diperbarui!');
+        }
+
+        // Dynamic Menu Management Logic
+        function populateParentSelect() {
+            const select = document.getElementById('parentMenuSelect');
+            select.innerHTML = '<option value="none">-- Tanpa Induk (Jadikan Menu Utama Baru) --</option>';
+            const mainItems = document.querySelectorAll('#mainNavMenu > .nav-item');
+
+            mainItems.forEach((item, index) => {
+                const spanElem = item.querySelector('.nav-link span');
+                const titleText = spanElem ? spanElem.textContent.trim() : item.querySelector('.nav-link').textContent.trim();
+                if(titleText !== "Admin") { 
+                    select.innerHTML += `<option value="${index}">Induk: ${titleText}</option>`;
+                }
+            });
+        }
+
+        function addOrUpdateMenu() {
+            const parentValue = document.getElementById('parentMenuSelect').value;
+            const title = document.getElementById('menuTitle').value.trim();
+            const link = document.getElementById('menuLink').value.trim() || '#';
+            const target = document.getElementById('menuTargetSelect').value;
+
+            if (!title) {
+                alert('Nama menu tidak boleh kosong!');
+                return;
+            }
+
+            let clickAction = "";
+            if (target === 'iframe') {
+                clickAction = `onclick="loadIframe('${link}', '${title}')"`;
+            } else {
+                clickAction = `href="${link}" target="_blank"`;
+            }
+
+            if (parentValue === 'none') {
+                const nav = document.getElementById('mainNavMenu');
+                const adminItem = nav.lastElementChild;
+                
+                const newLi = document.createElement('li');
+                newLi.className = 'nav-item';
+                newLi.innerHTML = `
+                    <a ${clickAction} class="nav-link"><span>${title}</span> <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu glass-panel"></ul>
+                `;
+
+                nav.insertBefore(newLi, adminItem);
+            } else {
+                const parentIdx = parseInt(parentValue);
+                const parentLi = document.querySelectorAll('#mainNavMenu > .nav-item')[parentIdx];
+                let submenuUl = parentLi.querySelector('.submenu');
+
+                if (!submenuUl) {
+                    submenuUl = document.createElement('ul');
+                    submenuUl.className = 'submenu glass-panel';
+                    parentLi.appendChild(submenuUl);
+                }
+
+                const newSubLi = document.createElement('li');
+                newSubLi.innerHTML = `<a ${clickAction}>${title}</a>`;
+                submenuUl.appendChild(newSubLi);
+            }
+
+            document.getElementById('menuTitle').value = '';
+            document.getElementById('menuLink').value = '';
+            populateParentSelect();
+            renderMenuTable();
+            alert('Menu/Submenu berhasil ditambahkan!');
+        }
+
+        function renderMenuTable() {
+            const tbody = document.getElementById('menuTableBody');
+            tbody.innerHTML = '';
+
+            const mainItems = document.querySelectorAll('#mainNavMenu > .nav-item');
+
+            mainItems.forEach((item, mIdx) => {
+                const linkElem = item.querySelector('.nav-link');
+                const spanElem = linkElem.querySelector('span');
+                const mainTitle = spanElem ? spanElem.textContent.trim() : linkElem.textContent.trim();
+                
+                let mainLink = linkElem.getAttribute('href') || linkElem.getAttribute('onclick') || '-';
+                let targetType = linkElem.getAttribute('target') === '_blank' ? 'Tab Baru' : 'Iframe';
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td><span style="color:var(--highlight-color); font-weight:bold;">[Menu Utama]</span></td>
+                        <td>${mainTitle}</td>
+                        <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${mainLink}</td>
+                        <td>${targetType}</td>
+                        <td>
+                            <button class="btn btn-warning" style="padding: 4px 8px; font-size: 0.75rem;" onclick="editMenu(${mIdx})"><i class="fas fa-edit"></i> Edit</button>
+                            ${mainTitle !== 'Admin' && mainTitle !== 'Home' ? `<button class="btn btn-danger" style="padding: 4px 8px; font-size: 0.75rem;" onclick="deleteMenu(${mIdx})"><i class="fas fa-trash"></i> Hapus</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+
+                const subItems = item.querySelectorAll('.submenu li');
+                subItems.forEach((sub, sIdx) => {
+                    const subLinkElem = sub.querySelector('a');
+                    const subTitle = subLinkElem.textContent;
+                    let subLink = subLinkElem.getAttribute('href') || subLinkElem.getAttribute('onclick') || '-';
+                    let subTargetType = subLinkElem.getAttribute('target') === '_blank' ? 'Tab Baru' : 'Iframe';
+
+                    tbody.innerHTML += `
+                        <tr>
+                            <td style="padding-left: 25px;">└─ <span style="opacity:0.8;">[Submenu]</span></td>
+                            <td>${subTitle}</td>
+                            <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${subLink}</td>
+                            <td>${subTargetType}</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 4px 8px; font-size: 0.75rem;" onclick="editSubmenu(${mIdx}, ${sIdx})"><i class="fas fa-edit"></i> Edit</button>
+                                <button class="btn btn-danger" style="padding: 4px 8px; font-size: 0.75rem;" onclick="deleteSubmenu(${mIdx}, ${sIdx})"><i class="fas fa-trash"></i> Hapus</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            });
+        }
+
+        function deleteMenu(index) {
+            if(confirm('Hapus menu utama ini beserta seluruh submenunya?')) {
+                const mainItems = document.querySelectorAll('#mainNavMenu > .nav-item');
+                mainItems[index].remove();
+                populateParentSelect();
+                renderMenuTable();
+            }
+        }
+
+        function deleteSubmenu(mainIndex, subIndex) {
+            if(confirm('Hapus submenu ini?')) {
+                const mainItems = document.querySelectorAll('#mainNavMenu > .nav-item');
+                const subItems = mainItems[mainIndex].querySelectorAll('.submenu li');
+                subItems[subIndex].remove();
+                renderMenuTable();
+            }
+        }
+
+        function editMenu(mainIndex) {
+            const mainItems = document.querySelectorAll('#mainNavMenu > .nav-item');
+            const linkElem = mainItems[mainIndex].querySelector('.nav-link');
+            const spanElem = linkElem.querySelector('span');
+            const currentTitle = spanElem ? spanElem.textContent.trim() : linkElem.textContent.trim();
+
+            const newTitle = prompt('Edit nama Menu Utama:', currentTitle);
+            if (newTitle) {
+                if (spanElem) {
+                    spanElem.textContent = newTitle;
+                } else {
+                    linkElem.textContent = newTitle;
+                }
+                renderMenuTable();
+                populateParentSelect();
+            }
+        }
+
+        function editSubmenu(mainIndex, subIndex) {
+            const mainItems = document.querySelectorAll('#mainNavMenu > .nav-item');
+            const subItem = mainItems[mainIndex].querySelectorAll('.submenu li a')[subIndex];
+
+            const newTitle = prompt('Edit nama Submenu:', subItem.textContent);
+            if (newTitle) {
+                subItem.textContent = newTitle;
+                renderMenuTable();
+            }
+        }
+    </script>
+</body>
+</html>
